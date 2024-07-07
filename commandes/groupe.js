@@ -9,7 +9,6 @@ const { search, download } = require("aptoide-scraper");
 const fs = require("fs-extra");
 const conf = require("../set");
 const { default: axios } = require('axios');
-const {generatepp} = require('../framework/mesfonctions')
 //const { uploadImageToImgur } = require('../framework/imgur');
 
 
@@ -32,7 +31,7 @@ zokou({ nomCom: "tagall", categorie: 'Group', reaction: "📣" }, async (dest, z
   let membresGroupe = verifGroupe ? await infosGroupe.participants : ""
   var tag = ""; 
   tag += `========================\n  
-        🌟 *Zokou-Md* 🌟
+        🌟 *Bmw-Md* 🌟
 ========================\n
 👥 Group : ${nomGroupe} 🚀 
 👤 Autor : *${nomAuteurMessage}* 👋 
@@ -71,9 +70,9 @@ zokou({ nomCom: "link", categorie: 'Group', reaction: "🙋" }, async (dest, zk,
   var link = await zk.groupInviteCode(dest)
   var lien = `https://chat.whatsapp.com/${link}`;
 
-  let mess = `hello ${nomAuteurMessage} , here is the group link ${nomGroupe} \n
+  let mess = `hello ${nomAuteurMessage} , here is the group link for ${nomGroupe} \n
 
-Lien :${lien}`
+Grp link :${lien} \n\n★𝙿𝚘𝚠𝚎𝚛𝚎𝚍 𝚋𝚢  𝙱𝚎𝚕𝚝𝚊𝚑-𝚃𝚎𝚌𝚑-𝚃𝚎𝚊𝚖`
   repondre(mess)
 
 
@@ -344,7 +343,7 @@ zokou({ nomCom: "info", categorie: 'Group' }, async (dest, zk, commandeOptions) 
 
     let mess = {
       image: { url: ppgroup },
-      caption:  `*━━━━『Info du groupe』━━━━*\n\n*🎐Name:* ${info.subject}\n\n*🔩Group's ID:* ${dest}\n\n*🔍Desc:* \n\n${info.desc}`
+      caption:  `*━━━━『Group Info』━━━━*\n\n*🎐Name:* ${info.subject}\n\n*🔩Group's ID:* ${dest}\n\n*🔍Desc:* \n\n${info.desc}`
     }
 
 
@@ -423,7 +422,7 @@ zokou({ nomCom: "info", categorie: 'Group' }, async (dest, zk, commandeOptions) 
 
  //------------------------------------antibot-------------------------------
 
- zokou({ nomCom: "antibot", categorie: 'Group', reaction: "🔗" }, async (dest, zk, commandeOptions) => {
+ zokou({ nomCom: "antibot", categorie: 'Group', reaction: "😬" }, async (dest, zk, commandeOptions) => {
 
 
   var { repondre, arg, verifGroupe, superUser, verifAdmin } = commandeOptions;
@@ -582,26 +581,12 @@ zokou({ nomCom: "gpp", categorie: 'Group' }, async (dest, zk, commandeOptions) =
   if (msgRepondu.imageMessage) {
     const pp = await  zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage) ;
 
-    let image = await generatepp(pp) ;
-
-    console.log(image) ;
-
-      let filepath = 'monpdp.jpg' ;
-
-      fs.writeFile(filepath,image.img , async (err)=> {
-
-          if (err) {
-
-            console.log(err) ;
-          } else {
-
-            await zk.updateProfilePicture(dest, { url: filepath }) ;
-          
-            zk.sendMessage(dest,{text:"Group pfp changed"})
-             fs.unlinkSync(pp)
-          }
-
-      } ) ; 
+    await zk.updateProfilePicture(dest, { url: pp })
+                .then( () => {
+                    zk.sendMessage(dest,{text:"Group pfp changed"})
+                    fs.unlinkSync(pp)
+                }).catch(() =>   zk.sendMessage(dest,{text:err})
+)
         
   } else {
     repondre('Please mention an image')
@@ -675,7 +660,7 @@ zokou({nomCom:"hidetag",categorie:'Group',reaction:"🎤"},async(dest,zk,command
         let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
 
         let stickerMess = new Sticker(media, {
-          pack: 'Zokou-tag',
+          pack: 'Bmw-mdtag',
           type: StickerTypes.CROPPED,
           categories: ["🤩", "🎉"],
           id: "12345",
@@ -717,7 +702,7 @@ zokou({nomCom:"hidetag",categorie:'Group',reaction:"🎤"},async(dest,zk,command
 });
 
 
-zokou({ nomCom: "apk", reaction: "✨", categorie: "Search" }, async (dest, zk, commandeOptions) => {
+zokou({ nomCom: "apk", reaction: "✨", categorie: "Recherche" }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
   try {
@@ -741,7 +726,7 @@ zokou({ nomCom: "apk", reaction: "✨", categorie: "Search" }, async (dest, zk, 
 
     const downloadLink = appData.dllink;
     const captionText =
-      "『 *Zokou-Md App* 』\n\n*Name :* " + appData.name +
+      "『 *Bmw-Md Application* 』\n\n*Name :* " + appData.name +
       "\n*Id :* " + appData["package"] +
       "\n*Last Update :* " + appData.lastup +
       "\n*Size :* " + appData.size +

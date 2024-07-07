@@ -12,13 +12,13 @@ zokou({ nomCom: "lyrics",
 
     if (!arg || arg.length === 0) return repondre("Where is the name of musique");
 
-    let  result  = await axios.get(`http://api.maher-zubair.tech/search/lyrics?q=${arg.join(' ')}`);
+    let  result  = await axios.get(`https://vihangayt.me/search/lyrics?q=${arg.join(' ')}`);
 
-    let lyrics = result.data.result;
+    let lyrics = result.data.data;
 
     if (lyrics.error) return repondre("no lyrics found");
 
-    let msg = `---------ZK-lyrics-finder--------
+    let msg = `---------Bmw-lyrics-finder--------
 
 * *Artist :* ${lyrics.artist}
 

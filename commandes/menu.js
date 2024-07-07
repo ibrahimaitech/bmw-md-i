@@ -18,60 +18,62 @@ zokou({ nomCom: "menu", categorie: "General" }, async (dest, zk, commandeOptions
 
 
     
-
-    cm.map(async (com, index) => {
+ cm.map(async (com, index) => {
         if (!coms[com.categorie])
             coms[com.categorie] = [];
         coms[com.categorie].push(com.nomCom);
     });
 
-    moment.tz.setDefault('Etc/GMT');
+    moment.tz.setDefault('EAT');
 
-// Créer une date et une heure en GMT
+// Créer une date et une heure en EAT
 const temps = moment().format('HH:mm:ss');
 const date = moment().format('DD/MM/YYYY');
 
   let infoMsg =  `
-╭────  BMW MD  ────◆
-│   *Préfix* : ${s.PREFIXE}
-│   *Owner* : ${s.OWNER_NAME}
-│   *Mode* : ${mode}
-│   *Commands* : ${cm.length}
-│   *Date* : ${date}
-│   *Hour* : ${temps}
-│   *Mémoire* : ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
-│   *Plateforme* : ${os.platform()}
-│   *Développer* : Djalega++ 
-│  Ibrahim Adams
-╰─────────────────◆ \n\n`;
-    
-let menuMsg = `
-👋 Hello ${nomAuteurMessage} 👋
-
-*List of commands :*
-◇                             ◇
+╭─────《𝐁𝐌𝐖-𝐌𝐃》────❒
+╏✰▏ *User* : ${s.OWNER_NAME}
+╏✰▏ *Developer* : *Ibrahim Adams*
+╰──────────────────❒
+╭──────────────────❒
+╏✰▏ *Mode* : ${mode}
+╏✰▏ *MADE* : *Kenya*
+╰──────────────────❒
+╭──────────────────❒
+╏✰▏ *Time* : ${temps} 
+╏✰▏ *Ram* : ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
+╏✰▏ *Version* : *8.0.6*
+╰──────────────────❒`;
+ let menuMsg=`
+ ╭─────────────────❒⁠⁠⁠⁠
+ ╏✰▏ *Date* : ${date}
+ ╏✰▏ *Level* : *maximum*
+ ╰─────────────────❒
+ ╭─────────────────❒
+ ╏✰▏ *Hours(GMT)* : ${temps}
+ ╏✰▏ *Prefix* : [ ${prefixe} ]
+ ╰─────────────────❒
 `;
 
     for (const cat in coms) {
-        menuMsg += `╭────❏ ${cat} ❏`;
+        menuMsg += `*╭────❒* *${cat}* *❒*`;
         for (const cmd of coms[cat]) {
-            menuMsg += `
-│ ${cmd}`;
+            menuMsg += `  
+*╏* ${cmd}`;
         }
         menuMsg += `
-╰═════════════⊷ \n`
+*╰─═════════════❒* \n`
     }
 
     menuMsg += `
-◇            ◇
-*»»————— ★ —————««*
-"To use a command, insert ${prefixe} followed by the command_name."
- 
-    Powered by Zokou-MD
-                                                
-*»»————— ★ —————««*
-`;
+            
+*——————————————*
 
+  *❒BMW-MD-V6❒*                                         
+*╰─────────────────────────❒*
+`;
+ 
+ 
    var lien = mybotpic();
 
    if (lien.match(/\.(mp4|gif)$/i)) {
@@ -86,7 +88,7 @@ let menuMsg = `
 // Vérification pour .jpeg ou .png
 else if (lien.match(/\.(jpeg|png|jpg)$/i)) {
     try {
-        zk.sendMessage(dest, { image: { url: lien }, caption:infoMsg + menuMsg, footer: "Je suis *Zokou-MD*, développé par Djalega++" }, { quoted: ms });
+        zk.sendMessage(dest, { image: { url: lien }, caption:infoMsg + menuMsg, footer: "*Ibrahim-tech*" }, { quoted: ms });
     }
     catch (e) {
         console.log("🥵🥵 Menu erreur " + e);
