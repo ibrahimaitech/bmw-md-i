@@ -32,7 +32,7 @@ const temps = moment().format('HH:mm:ss');
 const date = moment().format('DD/MM/YYYY');
 
   let infoMsg =  `
-╭────✧${s.BOT}✧────◆
+╭────  BMW MD  ────◆
 │   *Préfix* : ${s.PREFIXE}
 │   *Owner* : ${s.OWNER_NAME}
 │   *Mode* : ${mode}
@@ -42,8 +42,8 @@ const date = moment().format('DD/MM/YYYY');
 │   *Mémoire* : ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
 │   *Plateforme* : ${os.platform()}
 │   *Développer* : Djalega++ 
-│  & M๏𝓷keℽ D Lบffy
-╰─────✧WA-BOT✧─────◆ \n\n`;
+│  Ibrahim Adams
+╰─────────────────◆ \n\n`;
     
 let menuMsg = `
 👋 Hello ${nomAuteurMessage} 👋
